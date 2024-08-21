@@ -2,32 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html{
+  width: 100vw;
+  height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* --background: 51, 29%, 91%; */
+
+
+@layer base {
+ 
+:root  {
+  --background: 51, 29%, 91%;
+  --foreground: 173 0% 0%;
+  --card: 173 0% 90%;
+  --card-foreground: 173 0% 10%;
+  --popover: 173 0% 95%;
+  --popover-foreground: 173 95% 0%;
+  --primary: 173 55.6% 12.4%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 173 10% 70%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 135 10% 85%;
+  --muted-foreground: 173 0% 35%;
+  --accent: 135 10% 80%;
+  --accent-foreground: 173 0% 10%;
+  --destructive: 0 50% 30%;
+  --destructive-foreground: 173 0% 90%;
+  --border: 173 20% 50%;
+  --input: 173 20% 18%;
+  --ring: 173 55.6% 12.4%;
+  --radius: 1rem;
+}
+.dark  {
+  --background: 150 12% 10%;
+  --foreground: 173 0% 90%;
+  --card: 173 0% 0%;
+  --card-foreground: 173 0% 90%;
+  --popover: 173 10% 5%;
+  --popover-foreground: 173 0% 90%;
+  --primary: 51, 29%, 91%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 173 10% 10%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 135 10% 15%;
+  --muted-foreground: 173 0% 60%;
+  --accent: 135 10% 15%;
+  --accent-foreground: 173 0% 90%;
+  --destructive: 0 50% 30%;
+  --destructive-foreground: 173 0% 90%;
+  --border: 173 20% 18%;
+  --input: 173 20% 18%;
+  --ring: 173 55.6% 12.4%;
+  --radius: 1rem;
+}
+}
+@layer base {
+  * {
+    @apply border-border;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  body {
+    @apply bg-background text-foreground;
   }
 }
