@@ -1,8 +1,9 @@
 
 export type Dish = {
-    id: number
+    id: string
     name: string
     recipe: string
     tags: string[]
     user: string
+    createdAt: Date
 }

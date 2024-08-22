@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen`}>
+      <body className={`${inter.className} text-primary/90`}>
         <Providers
           attribute="class"
           defaultTheme="system"
@@ -27,7 +27,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <main className="h-screen container md:max-w-[80rem] ">
+
+            {children}
+          </main>
           <CreateDish />
         </Providers >
       </body>

@@ -1,7 +1,7 @@
 "use server"
 import { db } from '@/firebase';
 import { Dish } from '@/lib/types'; 
-import { addDoc, getDoc, updateDoc, deleteDoc, getDocs, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { addDoc, getDoc, updateDoc, deleteDoc, getDocs, collection, doc, serverTimestamp, query } from 'firebase/firestore';
 import { auth } from '@clerk/nextjs/server';
 
 // Create a new dish
@@ -24,19 +24,19 @@ export async function createDish(dish: Omit<Omit<Dish, 'id'>, 'user'>) {
 }
 
 // Read a dish by ID
-// export async function getDish(id: string) {
-//   try {
-//     const docRef = doc(db, 'dishes', id);
-//     const docSnap = await getDoc(docRef);
-//     if (!docSnap.exists()) {
-//       throw new Error('Dish not found');
-//     }
-//     return { id: docSnap.id, ...docSnap.data() } as Dish;
-//   } catch (error) {
-//     console.error('Error getting dish: ', error);
-//     throw new Error('Failed to get dish');
-//   }
-// }
+export async function getDish(id: string) {
+  try {
+    const docRef = doc(db, 'dishes', id);
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) {
+      throw new Error('Dish not found');
+    }
+    return { id: docSnap.id, ...docSnap.data() } as Dish;
+  } catch (error) {
+    console.error('Error getting dish: ', error);
+    throw new Error('Failed to get dish');
+  }
+}
 
 // Update a dish
 export async function updateDish(id: string, dish: Partial<Omit<Dish, 'id'>>) {
@@ -59,6 +59,10 @@ export async function deleteDish(id: string) {
 
     try {
         const docRef = doc(db, 'dishes', id);
+
+        if ((await getDoc(docRef)).data()?.user !== userId)
+            throw new Error('Unauthorized');
+        
         await deleteDoc(docRef);
         return { message: 'Dish successfully deleted' };
     } catch (error) {
@@ -68,12 +72,19 @@ export async function deleteDish(id: string) {
 }
 
 // Get all dishes
-// export async function getAllDishes() {
-//     try {
-//         const querySnapshot = await getDocs(collection(db, 'dishes'));
-//         return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Dish[];
-//     } catch (error) {
-//         console.error('Error getting all dishes: ', error);
-//         throw new Error('Failed to get all dishes');
-//     }
-// }
+export async function getAllDishes() {
+  const dishesCol = collection(db, 'dishes')
+  const dishSnapshot = await getDocs(dishesCol)
+  const dishes = dishSnapshot.docs.map(doc => {
+    const data = doc.data()
+    return {
+      id: doc.id,
+      name: data.name,
+      tags: data.tags,
+      recipe: data.recipe,
+      user: data.user,
+      createdAt: data.createdAt ? data.createdAt.toDate().toISOString() : null
+    } as Dish
+  })
+  return dishes
+}
