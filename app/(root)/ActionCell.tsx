@@ -1,14 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 import useCopyToClipboard from "@/app/hooks/useCopyToClipboard"
 import { Button } from "@/components/ui/button"
-import { DataTableColumnHeader } from "./DataTableColumnHeader"
 import {
     DropdownMenu,
-    DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuLabel,
