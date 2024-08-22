@@ -32,7 +32,7 @@ const CreateDish = () => {
             await createDish({
                 name: nameRef.current.value,
                 recipe: textareaRef.current?.value || '',
-                tags: tags,
+                tags: tags
             });
         },
         onSuccess: async () => {

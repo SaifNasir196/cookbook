@@ -5,7 +5,7 @@ import { addDoc, getDoc, updateDoc, deleteDoc, getDocs, collection, doc, serverT
 import { auth } from '@clerk/nextjs/server';
 
 // Create a new dish
-export async function createDish(dish: Omit<Omit<Dish, 'id'>, 'user'>) {
+export async function createDish(dish: Omit<Omit<Omit<Dish, 'id'>, 'user'>, 'createdAt'>) {
     const { userId } = auth();
     if (!userId) return { error: 'User not authenticated' };
 
