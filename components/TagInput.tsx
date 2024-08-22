@@ -36,7 +36,7 @@ const TagInput: React.FC<{
     };
 
     return (
-        <div className="flex flex-wrap gap-2 rounded-md">
+        <div className="flex flex-wrap gap-3 rounded-md">
             {tags.map(tag => (
                 <Badge key={tag} variant="secondary" className="h-7 px-3">
                     {tag}

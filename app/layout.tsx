@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-full`}>
+      <body className={`${inter.className} min-h-screen`}>
         <Providers
           attribute="class"
           defaultTheme="system"

@@ -11,24 +11,14 @@ export const columns: ColumnDef<Dish>[] = [
     {
         accessorKey: "index",
         header: "",
-        cell: ({ row }) => <div className="w-10">{row.index + 1}</div>,
+        cell: ({ row }) => <div className="w-full">{row.index + 1}</div>,
     },
     {
         accessorKey: "name",
         header: "Name",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("name")}</div>
+            <div className="capitalize font-medium">{row.getValue("name")}</div>
         ),
-    },
-    {
-        accessorKey: "email",
-        header: ({ column }) => {
-            return (
-                <DataTableColumnHeader column={column} title="Email" />
-
-            )
-        },
-        cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
     },
     {
         accessorKey: "tags",

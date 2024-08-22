@@ -1,11 +1,11 @@
+"use server"
 import { db } from '@/firebase';
 import { Dish } from '@/lib/types'; 
 import { addDoc, getDoc, updateDoc, deleteDoc, getDocs, collection, doc, serverTimestamp } from 'firebase/firestore';
 import { auth } from '@clerk/nextjs/server';
-import { create } from 'domain';
 
 // Create a new dish
-export async function createDish(dish: Omit<Dish, 'id'>) {
+export async function createDish(dish: Omit<Omit<Dish, 'id'>, 'user'>) {
     const { userId } = auth();
     if (!userId) return { error: 'User not authenticated' };
 
@@ -15,6 +15,7 @@ export async function createDish(dish: Omit<Dish, 'id'>) {
             user: userId,
             createdAt: serverTimestamp(),
         });
+        console.log('print doc', docRef.type);
         return { id: docRef.id };
     } catch (error) {
         console.error('Error adding dish: ', error);

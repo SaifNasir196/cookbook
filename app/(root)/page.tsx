@@ -3,6 +3,7 @@ import Image from "next/image";
 import { columns } from "./columns";
 import { DataTable } from "./DataTable";
 import { Dish } from "@/lib/types";
+import { DishList } from "./DistList";
 
 async function getData(): Promise<Dish[]> {
   // Fetch data from your API here.
@@ -64,7 +65,7 @@ export default async function Home() {
   const data = await getData()
 
   return (
-    <main className="flex flex-col px-4 py-3 shadow-sm md:px-6 lg:px-8 mb-40">
+    <main className="flex flex-col px-4 py-3 shadow-sm md:px-6 lg:px-8 mb-40 h-full">
       {/* search dishes */}
       <div className="container mt-20">
         {/* <Input ref={searchRef} placeholder="Search dishes" className="py-4 border-primary/[0.6]" /> */}
@@ -72,7 +73,9 @@ export default async function Home() {
 
       {/* featured dishes */}
       <div className="container">
-        <DataTable columns={columns} data={data} />
+        {/* <DataTable columns={columns} data={data} /> */}
+
+        <DishList dishes={data} />
       </div>
 
     </main>
