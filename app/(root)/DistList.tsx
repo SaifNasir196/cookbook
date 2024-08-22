@@ -16,17 +16,15 @@ export function DishList({ dishes }: DishListProps) {
     )
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-4 mx-auto">
             <Input
                 placeholder="Search dishes..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="max-w-sm border-primary/[0.55]"
+                className="max-w-lg border-primary/[0.55] mx-auto"
             />
-            <div>
-                {
-                    filteredDishes.map((dish, index) => <DishItem dish={dish} index={index} />)
-                }
+            <div className='xl:mx-60 lg:mx-32 sm:mx-20 transition-all'>
+                {filteredDishes.map((dish, index) => <DishItem dish={dish} index={index} />)}
             </div>
         </div>
     )

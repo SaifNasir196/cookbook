@@ -1,7 +1,3 @@
-import { Input } from "@/components/ui/input";
-import Image from "next/image";
-import { columns } from "./columns";
-import { DataTable } from "./DataTable";
 import { Dish } from "@/lib/types";
 import { DishList } from "./DistList";
 

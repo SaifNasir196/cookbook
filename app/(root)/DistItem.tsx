@@ -6,7 +6,7 @@ import ActionCell from "./ActionCell"
 
 const DishItem = ({ dish, index }: { dish: Dish, index: number }) => {
     return (
-        <div key={dish.id} className="bg-background border border-primary/[0.55] rounded-lg p-4 shadow-sm mb-4">
+        <div key={dish.id} className="bg-primary/5 rounded-lg p-4 shadow-md mb-4">
             <div className="flex justify-between items-start">
                 <div className="flex-grow">
                     <div className="flex items-center mb-2">
@@ -17,7 +17,7 @@ const DishItem = ({ dish, index }: { dish: Dish, index: number }) => {
                         {dish.tags.map((tag: string) => (
                             <span
                                 key={tag}
-                                className="px-3 py-1 text-xs font-semibold tracking-wide text-white bg-primary/[0.8] dark:bg-primary dark:text-green-950 rounded-full"
+                                className="px-3 py-1 text-xs font-semibold tracking-wide text-white bg-primary/[0.8]  rounded-full" // dark:bg-primary dark:text-green-950
                             >
                                 {tag}
                             </span>
