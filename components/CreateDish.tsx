@@ -48,7 +48,7 @@ const CreateDish: React.FC = () => {
                     <DialogHeader>
                         <DialogTitle>Create New Dish</DialogTitle>
                         <DialogDescription>
-                            Add a new dish to your collection. Click save when you're done.
+                            Add a new dish to your collection. Click save when you&apos;re done.
                         </DialogDescription>
                     </DialogHeader>
                     <form onSubmit={handleSubmit}>

@@ -2,20 +2,8 @@
 
 import * as React from "react"
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
-import useCopyToClipboard from "@/app/hooks/useCopyToClipboard"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
 import { DataTableColumnHeader } from "./DataTableColumnHeader"
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import ActionCell from "./ActionCell"
 import { Dish } from "@/lib/types"
 
 export const columns: ColumnDef<Dish>[] = [
@@ -42,15 +30,9 @@ export const columns: ColumnDef<Dish>[] = [
         },
         cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
     },
-
     {
         accessorKey: "tags",
-        header: () => {
-            return (
-                <div className="text-center">Tag</div>
-
-            )
-        },
+        header: () => (<div className="text-center">Tag</div>),
         cell: ({ row }) => (
             <div className="flex space-x-2 justify-end">
                 {(row.getValue("tags") as string[]).map((tag: string) => (
@@ -64,35 +46,9 @@ export const columns: ColumnDef<Dish>[] = [
             </div>
         ),
     },
-
-
-
     {
         id: "actions",
         enableHiding: false,
-        cell: ({ row }) => {
-            const dish = row.original
-            const { isCopied, copyToClipboard } = useCopyToClipboard(process.env.NEXT_PUBLIC_FRONTEND_URL + `/dish/${dish.id}`);
-
-            return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem onSelect={e => e.preventDefault()} onClick={copyToClipboard}>
-                            {isCopied ? "Copied!" : "Copy link"}
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            )
-        },
+        cell: ({ row }) => <ActionCell dish={row.original} />,
     },
 ]
