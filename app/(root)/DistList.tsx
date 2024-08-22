@@ -24,7 +24,7 @@ export function DishList({ dishes }: DishListProps) {
                 className="max-w-lg border-primary/[0.55] mx-auto"
             />
             <div className='xl:mx-60 lg:mx-32 sm:mx-20 transition-all'>
-                {filteredDishes.map((dish, index) => <DishItem dish={dish} index={index} />)}
+                {filteredDishes.map((dish, index) => <DishItem dish={dish} index={index} key={index} />)}
             </div>
         </div>
     )

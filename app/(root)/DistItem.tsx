@@ -15,10 +15,8 @@ const DishItem = ({ dish, index }: { dish: Dish, index: number }) => {
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2">
                         {dish.tags.map((tag: string) => (
-                            <span
-                                key={tag}
-                                className="px-3 py-1 text-xs font-semibold tracking-wide text-white bg-primary/[0.8]  rounded-full" // dark:bg-primary dark:text-green-950
-                            >
+                            <span key={tag}
+                                className="px-3 py-1 text-xs font-semibold tracking-wide text-white bg-primary/[0.8]  rounded-full"> {/* dark:bg-primary dark:text-green-950 */}
                                 {tag}
                             </span>
                         ))}
