@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useMemo, Suspense } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Input } from "@/components/ui/input"
 import { Dish } from "@/lib/types"
 import { Button } from "@/components/ui/button"
@@ -11,26 +11,18 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useQuery } from '@tanstack/react-query'
-import { getAllDishes } from '@/app/actions/dish'
-import { Skeleton } from "@/components/ui/skeleton"
+import { UseQueryResult } from '@tanstack/react-query'
 import { SkeletonLoader } from './Loading'
 
 
 
-export function DishList() {
+export function DishList({ query }: { query: UseQueryResult<Dish[], Error> }) {
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedTags, setSelectedTags] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 3
 
-    const { data: dishes, isLoading, isError, error } = useQuery({
-        queryKey: ['dishes'],
-        queryFn: async () => {
-            const res = await getAllDishes();
-            return res;
-        }
-    })
+    const { data: dishes, isLoading, isError, error } = query
 
     const allTags = useMemo(() => {
         const tagSet = new Set<string>()
@@ -72,7 +64,7 @@ export function DishList() {
                         setSearchTerm(event.target.value)
                         setCurrentPage(1) // Reset to first page when searching
                     }}
-                    className="max-w-sm border-primary/[0.3] rounded-tr-none rounded-br-none"
+                    className="max-w-sm border-primary/[0.3] rounded-tr-none rounded-br-none focus:border-none focus:ring-0"
                 />
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

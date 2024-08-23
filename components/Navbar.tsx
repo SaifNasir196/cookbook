@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { Menu, Home, Mountain, Bell } from 'lucide-react'
+import { Menu, Heart, Mountain, Bell } from 'lucide-react'
 import { SignInButton } from "@clerk/nextjs"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
@@ -29,12 +29,18 @@ export default function Component() {
                                 Home
                             </Button>
                         </Link>
+
+                        <Link href="/explore">
+                            <Button variant="ghost" className={cn({ "bg-secondary/[0.25]": pathname.includes("/explore") })}>
+                                Explore
+                            </Button>
+                        </Link>
+
                         <Link href="/about">
                             <Button variant="ghost" className={cn({ "bg-secondary/[0.25]": pathname.includes("/about") })}>
                                 About
                             </Button>
                         </Link>
-
                     </div>
 
                     <div className="flex gap-6">
@@ -42,6 +48,12 @@ export default function Component() {
                         <Link href="/notifications">
                             <Button variant="ghost" size="icon" className={cn({ "bg-secondary/[0.25]": pathname == "/notifications" })}>
                                 <Bell size={19} />
+                            </Button>
+                        </Link>
+
+                        <Link href="/favourites">
+                            <Button variant="ghost" size="icon" className={cn({ "bg-secondary/[0.25]": pathname == "/favourites" })}>
+                                <Heart size={19} />
                             </Button>
                         </Link>
 
@@ -74,11 +86,19 @@ export default function Component() {
                                     Home
                                 </Button>
                             </Link>
+
+                            <Link href="/explore">
+                                <Button variant="ghost" className={cn("w-full", { "bg-secondary/[0.25]": pathname.includes("/explore") })}>
+                                    Explore
+                                </Button>
+                            </Link>
+
                             <Link href="/about">
                                 <Button variant="ghost" className={cn("w-full", { "bg-secondary/[0.25]": pathname == "/about" })}>
                                     About
                                 </Button>
                             </Link>
+
 
                             <Link href="/notifications">
                                 <Button variant="ghost" className={cn("w-full", { "bg-secondary/[0.25]": pathname == "/notifications" })}>

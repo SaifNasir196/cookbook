@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useRef } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Sparkles } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import TagInput from "@/components/TagInput";
 import {
@@ -66,7 +66,7 @@ const CreateDish = () => {
                             <Label htmlFor="name"> Name </Label>
                             <Input id="name" ref={nameRef} placeholder="Nihari" className="border-primary/[0.6]" />
                         </div>
-                        <div className="flex flex-col gap-2">
+                        <div className="relative flex flex-col gap-2">
                             <Label htmlFor="recipe" > Recipe </Label>
                             <Textarea id="recipe" ref={textareaRef} placeholder='Heat oil, fry onions until golden brown.
                                 Add meat (beef or lamb), ginger-garlic paste, and spices (nihari masala, red chili, turmeric).
@@ -75,7 +75,12 @@ const CreateDish = () => {
                                 Mix wheat flour with water, add to the curry to thicken.
                                 Simmer for 15-20 minutes more.
                                 Garnish with ginger, cilantro, and lemon juice.
-                                Serve hot with naan or rice.' className="border-primary/[0.6] h-64" />
+                                Serve hot with naan or rice.' className="border-primary/[0.6] h-64"
+                            />
+                            <Button variant="secondary" className="absolute bottom-2 right-2">
+                                <Sparkles strokeWidth={1.5} size={18} className='mr-2' />Generate with AI
+                            </Button>
+
                         </div>
                         <div className="flex flex-col gap-2">
                             <Label htmlFor="tags"> Tags </Label>
