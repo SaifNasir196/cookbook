@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getAllDishes } from '@/app/actions/dish'
 
 
-const page = () => {
+const Favourites = () => {
     const query = useQuery({
         queryKey: ['dishes'],
         queryFn: async () => {
@@ -25,4 +25,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Favourites
